@@ -232,7 +232,8 @@
       </Grid>
 
     </Border>
+        <Label x:Name="clocklbl" Content="Label" HorizontalAlignment="Left" Margin="234,111,0,0" VerticalAlignment="Top"/>
 
-  </Grid>
+    </Grid>
 
 </Window>

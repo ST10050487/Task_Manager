@@ -23,18 +23,34 @@ namespace Task__Manager
         public MainWindow()
         {
             InitializeComponent();
+            
+           // Set up a timer to update the clock every second
+            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += (s, e) => UpdateClock();
+            timer.Start();
         }
+        // A method to handle the click event of the "Create Task" button
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
             SaveTasks save = new SaveTasks();
             save.Show();
             this.Close();
         }
+        // A method to handle the click event of the "View Tasks" button
         private void ViewTasksButton_Click(object sender, RoutedEventArgs e)
         {
             ViewTasks view = new ViewTasks();
             view.Show();
             this.Close();
+        }
+        // A method to update the clock label every second
+        private void UpdateClock()
+        {
+            if(clocklbl != null)
+            {
+                clocklbl.Content = DateTime.Now.ToString("hh:mm:ss tt");
+            }
         }
     }
 }
