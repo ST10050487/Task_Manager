@@ -232,7 +232,45 @@
       </Grid>
 
     </Border>
-        <Label x:Name="clocklbl" Content="Label" HorizontalAlignment="Left" Margin="234,111,0,0" VerticalAlignment="Top"/>
+        <!-- Clock Widget -->
+        <Border HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="20" 
+                Background="White" 
+                Padding="16,10" 
+                CornerRadius="12" 
+                BorderThickness="1" 
+                BorderBrush="#E2E8F0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Color="Black" Opacity="0.05"/>
+            </Border.Effect>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="🕐" FontSize="16" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                <Label x:Name="clocklbl" Content="--:--:--" FontSize="14" FontWeight="SemiBold" Foreground="#334155" Padding="0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Weather Widget -->
+        <Border HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="20" 
+                Background="White" 
+                Padding="16,12" 
+                CornerRadius="12" 
+                BorderThickness="1" 
+                BorderBrush="#E2E8F0" 
+                MaxWidth="300">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="2" Color="Black" Opacity="0.05"/>
+            </Border.Effect>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="🌤" FontSize="18" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                    <Label x:Name="weatherlbl" Content="Loading weather..." FontSize="14" FontWeight="SemiBold" Foreground="#0F172A" Padding="0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Label x:Name="forecastlbl" Content="" FontSize="12" Foreground="#64748B" Padding="0"/>
+            </StackPanel>
+        </Border>
 
     </Grid>
 
