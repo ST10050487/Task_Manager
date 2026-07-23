@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
 
-    steps:
+        steps:
     - uses: actions/checkout@v4
 
     - name: Setup .NET SDK
@@ -25,8 +25,11 @@ jobs:
       run: choco install nuget.commandline -y
 
     - name: List repo files (debug)
-      run: nuget restore src/Task_Manager/Task_Manager.sln
-  
+      run: Get-ChildItem -Recurse -Filter *.sln
+
+    - name: NuGet restore (for packages.config projects)
+      run: nuget restore '**/*.sln'
+
     - name: Restore dependencies (dotnet)
       run: dotnet restore
 
