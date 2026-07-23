@@ -24,9 +24,9 @@ jobs:
     - name: Install NuGet CLI
       run: choco install nuget.commandline -y
 
-    - name: NuGet restore (for packages.config projects)
-      run: nuget restore '**/*.sln'
-
+    - name: List repo files (debug)
+      run: Get-ChildItem -Recurse -Filter *.sln
+  
     - name: Restore dependencies (dotnet)
       run: dotnet restore
 
