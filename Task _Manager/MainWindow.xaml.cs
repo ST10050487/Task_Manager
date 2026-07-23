@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 
 namespace Task__Manager
 {
@@ -59,7 +60,9 @@ namespace Task__Manager
         private async Task DisplayWeatherForecast()
         {
             var httpClient = new HttpClient();
-            var weatherService = new WeatherService(httpClient, "613f6012da449f597765f46ed746f2b6");
+            //Read the key securely from the App.config file
+            string apiKey = ConfigurationManager.AppSettings["OpenWeatherMapApiKey"];
+            var weatherService = new WeatherService(httpClient, apiKey);
 
             // Fetch and check current weather
             var currentWeather = await weatherService.GetCurrentWeatherAsync("Cape Town");
