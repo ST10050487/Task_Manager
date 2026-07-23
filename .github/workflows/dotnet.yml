@@ -21,7 +21,13 @@ jobs:
     - name: Install .NET Framework Developer Pack 4.8
       run: choco install netfx-4.8-devpack -y
 
-    - name: Restore dependencies
+    - name: Install NuGet CLI
+      run: choco install nuget.commandline -y
+
+    - name: NuGet restore (for packages.config projects)
+      run: nuget restore Task_Manager.sln
+
+    - name: Restore dependencies (dotnet)
       run: dotnet restore
 
     - name: Build
