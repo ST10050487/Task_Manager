@@ -24,11 +24,19 @@ jobs:
     - name: Install NuGet CLI
       run: choco install nuget.commandline -y
 
-    - name: List repo files (debug)
-      run: Get-ChildItem -Recurse -Filter *.sln
-
-    - name: NuGet restore (for packages.config projects)
-      run: nuget restore '**/*.sln'
+    - name: Find and restore all solutions (NuGet)
+      shell: pwsh
+      run: |
+        Write-Host "Searching for .sln files..."
+        $slns = Get-ChildItem -Recurse -Filter *.sln -ErrorAction SilentlyContinue
+        if (-not $slns) {
+          Write-Host "No .sln files found in repository."
+          exit 1
+        }
+        foreach ($s in $slns) {
+          Write-Host "Found: $($s.FullName)"
+          nuget restore "$($s.FullName)"
+        }
 
     - name: Restore dependencies (dotnet)
       run: dotnet restore
